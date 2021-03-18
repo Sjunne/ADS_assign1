@@ -308,5 +308,46 @@ public class CalcutorTests {
         Assertions.assertThrows(Calculator.MalformedExpressionException.class, () ->
             client.evaluateExpression(tokenArrayList));
         }
+
+    @Test
+    void tokenListIsEmpty()
+    {
+        Assertions.assertThrows(Calculator.MalformedExpressionException.class, () ->
+            client.evaluateExpression(tokenArrayList));
+    }
+
+    @Test
+    void tokenListHas1Token()
+    {
+        tokenArrayList.add(new Operator());
+        Assertions.assertThrows(Calculator.MalformedExpressionException.class, () ->
+            client.evaluateExpression(tokenArrayList));
+    }
+
+    @Test
+    void tokenListHas2Tokens()
+    {
+        tokenArrayList.add(new Operator());
+        tokenArrayList.add(new Operator());
+        Assertions.assertThrows(Calculator.MalformedExpressionException.class, () ->
+            client.evaluateExpression(tokenArrayList));
+    }
+
+    @Test
+    void tokenList2OperatorInARow()
+    {
+        Operator operator = new Operator();
+        Operator operator2 = new Operator();
+        operator.setOperation(Operation.GANGE);
+        operator2.setOperation(Operation.MINUS);
+        tokenArrayList.add(new Operand());
+        tokenArrayList.add(new Operand());
+        tokenArrayList.add(operator);
+        tokenArrayList.add(operator2);
+        Assertions.assertThrows(Calculator.MalformedExpressionException.class, () ->
+            client.evaluateExpression(tokenArrayList));
+    }
+
+
     }
 

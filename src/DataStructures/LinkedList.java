@@ -30,6 +30,10 @@ public class LinkedList<T> implements List<T>{
     @Override
     public T removeFirst() throws EmptyListException {
         Node<T> temp = head;
+        if(head == null)
+        {
+            throw new EmptyListException();
+        }
         head = temp.getNext();
         size--;
         return temp.getData();

@@ -3,6 +3,8 @@ package Calculator;
 
 import DataStructures.LinkedStack;
 
+import java.util.EmptyStackException;
+
 public class CalculatorVisitor implements Visitor, Calculator {
 
     private LinkedStack<Token> tokenStack;
@@ -14,7 +16,15 @@ public class CalculatorVisitor implements Visitor, Calculator {
 
     @Override
     public int getResult() throws MalformedExpressionException {
-        Token pop = tokenStack.pop();
+        Token pop = null;
+        try
+        {
+            pop = tokenStack.pop();
+        }
+        catch (EmptyStackException e)
+        {
+            throw new MalformedExpressionException();
+        }
         if (!tokenStack.isEmpty()){
             throw new MalformedExpressionException();
         }
@@ -44,8 +54,15 @@ public class CalculatorVisitor implements Visitor, Calculator {
         Token tempA; //First one
         Token tempB;
 
-        tempB = tokenStack.pop();
-        tempA = tokenStack.pop();
+        try
+        {
+            tempB = tokenStack.pop();
+            tempA = tokenStack.pop();
+        }
+        catch (EmptyStackException e)
+        {
+            throw new Calculator.MalformedExpressionException();
+        }
 
         Operand A = (Operand) tempA;
         int valueA = A.getValue();

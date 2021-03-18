@@ -9,7 +9,7 @@ public class Client {
 
     private Token token;
 
-    public int evaluateExpression(ArrayList<Token> tokenList) throws Calculator.MalformedExpressionException {
+    public static int evaluateExpression(ArrayList<Token> tokenList) throws Calculator.MalformedExpressionException {
         CalculatorVisitor visitor = new CalculatorVisitor();
 
         for (int i = 0; i < tokenList.size(); i++) {
@@ -20,13 +20,13 @@ public class Client {
 
     }
 
-    /*
+
 
     public static void main(String[] args) {
         ArrayList<Token> tokenArrayList = new ArrayList<>();
 
 
-        Operand operand1 = new Operand();
+       /* Operand operand1 = new Operand();
         Operand operand2 = new Operand();
         Operand operand3 = new Operand();
         Operand operand4 = new Operand();
@@ -54,9 +54,9 @@ public class Client {
         tokenArrayList.add(operator2);
 
 
-        System.out.println(evaluateExpression(tokenArrayList));
+        System.out.println(evaluateExpression(tokenArrayList));*/
     }
 
 
-     */
+
 }
